@@ -2,10 +2,7 @@ package com.example.mybatis.plus.generator.demo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
@@ -24,13 +21,13 @@ public class TestAutoGenerate {
 //        gc.setOutputDir(projectPath + "/src/main/java");
         gc.setOutputDir(System.getProperty("user.dir") +"/src/main/java");
         // 配置开发者信息（可选）（需要修改）
-//        gc.setAuthor("lyh");
+        gc.setAuthor("egoist");
         // 配置是否打开目录，false 为不打开（可选）
         gc.setOpen(false);
         // 实体属性 Swagger2 注解，添加 Swagger 依赖，开启 Swagger2 模式（可选）
         //gc.setSwagger2(true);
         // 重新生成文件时是否覆盖，false 表示不覆盖（可选）
-        gc.setFileOverride(false);
+        gc.setFileOverride(true);
         // 配置主键生成策略，此处为 ASSIGN_ID雪花算法（可选）
         gc.setIdType(IdType.ASSIGN_ID);
         // 配置日期类型，此处为 ONLY_DATE（可选）
@@ -87,6 +84,9 @@ public class TestAutoGenerate {
         strategy.setTablePrefix("tb_");
         mpg.setStrategy(strategy);
 
+        TemplateConfig template = new TemplateConfig();
+        template.setEntity("templates/Entity.java");
+        mpg.setTemplate(template);
         // Step6：执行代码生成操作
         mpg.execute();
     }
